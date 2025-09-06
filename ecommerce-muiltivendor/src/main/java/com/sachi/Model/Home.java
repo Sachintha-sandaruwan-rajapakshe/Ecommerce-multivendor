@@ -12,3 +12,4 @@ public class Home {
 	private List<HomeCategory>electricCategories;
 	private List<HomeCategory>dealcategories;
 	private List<Deal> deals;
+}
