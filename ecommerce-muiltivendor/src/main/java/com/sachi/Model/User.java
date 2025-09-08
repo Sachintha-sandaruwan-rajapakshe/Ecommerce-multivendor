@@ -22,10 +22,11 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode   // duplicate data enter wenne na me annotation eken
@@ -53,5 +54,72 @@ public class User {
 	@JsonIgnore
 	private Set<Coupon> useCoupons = new HashSet<>(); //Set එක List එකට වෙනස් වීමේ කාරණය,ඔයා එකම Address එක duplicate වශයෙන් add කරන්න අවශ්‍ය නැති නම් Set use කරන්න.
 	//List use කරලා තිබුනොත් duplicates allow කරනවා.
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public USER_ROLE getRole() {
+		return role;
+	}
+
+	public void setRole(USER_ROLE role) {
+		this.role = role;
+	}
+
+	public Set<Address> getAddress() {
+		return address;
+	}
+
+	public void setAddress(Set<Address> address) {
+		this.address = address;
+	}
+
+	public Set<Coupon> getUseCoupons() {
+		return useCoupons;
+	}
+
+	public void setUseCoupons(Set<Coupon> useCoupons) {
+		this.useCoupons = useCoupons;
+	}
+	
+	
+	
 
 }

@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
