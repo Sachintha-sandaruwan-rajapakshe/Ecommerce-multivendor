@@ -77,6 +77,35 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+		
+		<!-- JSON me 3 inser karanna jwt eka sadaha -->
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-api</artifactId>
+		    <version>0.11.5</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-impl</artifactId>
+		    <version>0.11.5</version>
+		    <scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-jackson</artifactId> <!-- JSON serialization/deserialization -->
+		    <version>0.11.5</version>
+		    <scope>runtime</scope>
+		</dependency>
+		
+		<!-- මේක add කරනකොට Spring Boot එකේ JavaMailSender bean එක auto-configure වෙනවා. ඒක use කරලා ඔයාට email යවන්න පුළුවන්. -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+
     </dependencies>
 
     <build>
