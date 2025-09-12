@@ -17,7 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity //මේ Spring Security configuration class එක.Backend එකේ login / JWT token check / API වලට යන්න permission දීම / CORS allow කිරීම මෙන්ම password encrypt කිරීම පාලනය කරනවා.
 public class AppConfig {
 
     @Bean

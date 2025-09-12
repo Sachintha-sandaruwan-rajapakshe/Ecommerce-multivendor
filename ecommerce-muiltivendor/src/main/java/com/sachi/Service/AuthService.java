@@ -1,5 +1,8 @@
 package com.sachi.Service;
 
-public interface AuthService {
+import com.sachi.Request.SignupRequest;
 
+public interface AuthService {
+	
+	String careateUser(SignupRequest req)throws Exception;
 }
