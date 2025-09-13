@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sachi.Configuration.JwtProvider;
 import com.sachi.Domain.USER_ROLE;
 import com.sachi.Model.Cart;
 import com.sachi.Model.User;
@@ -18,7 +19,6 @@ import com.sachi.Repository.CartRepository;
 import com.sachi.Repository.UserRepository;
 import com.sachi.Request.SignupRequest;
 import com.sachi.Service.AuthService;
-import com.sachiConfig.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 @Service

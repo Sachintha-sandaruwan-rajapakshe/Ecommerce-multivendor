@@ -1,4 +1,4 @@
-package com.sachiConfig;
+package com.sachi.Configuration;
 
 import java.io.IOException;
 import java.util.List;

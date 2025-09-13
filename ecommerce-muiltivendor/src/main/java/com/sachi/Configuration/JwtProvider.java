@@ -1,4 +1,4 @@
-package com.sachiConfig;
+package com.sachi.Configuration;
 
 import java.util.Collection;
 import java.util.Date;
