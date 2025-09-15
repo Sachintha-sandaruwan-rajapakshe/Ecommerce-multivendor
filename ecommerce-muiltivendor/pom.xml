@@ -104,6 +104,14 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+		
+		<!-- මේක add කරනකොට Spring Boot එකේ Library use  කරලා .env load කරන්න පුළුවන්. යවන්න පුළුවන්. -->
+		<dependency>
+		    <groupId>me.paulschwarz</groupId>
+		    <artifactId>spring-dotenv</artifactId>
+		    <version>4.0.0</version>
+		</dependency>
+
 
 
     </dependencies>

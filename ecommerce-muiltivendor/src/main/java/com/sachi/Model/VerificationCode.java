@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class VarificationCode {
+public class VerificationCode {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
