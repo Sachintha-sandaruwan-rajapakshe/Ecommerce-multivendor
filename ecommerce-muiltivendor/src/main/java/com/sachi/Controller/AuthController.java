@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sachi.Domain.USER_ROLE;
+import com.sachi.Model.VerificationCode;
 import com.sachi.Request.SignupRequest;
+import com.sachi.Response.ApiResponse;
 import com.sachi.Response.AuthResponse;
+import com.sachi.Response.LoginRequest;
 import com.sachi.Service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,4 +34,22 @@ public class AuthController {
 		authResponse.setRole(USER_ROLE.ROLE_CUSTOMER);
 		return new ResponseEntity<>(authResponse,HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/sent/login-signup-otp")
+	public ResponseEntity<ApiResponse>sendOtpHandler(@RequestBody VerificationCode req) throws Exception{
+		authService.sentLoginOtp(req.getEmail());
+		
+		ApiResponse res = new ApiResponse();
+		res.setMessange("Otp sent Successfully..!");
+		return new ResponseEntity<>(res,HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/signin")
+	public ResponseEntity<AuthResponse>loginHandler(@RequestBody LoginRequest req) throws Exception{
+		
+		AuthResponse authResponse= authService.signing(req);
+		
+		return new ResponseEntity<>(authResponse,HttpStatus.OK);
+	}
 }
+
