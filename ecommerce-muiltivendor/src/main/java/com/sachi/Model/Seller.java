@@ -40,8 +40,8 @@ public class Seller {
 	@Embedded
 	private BusinessDetails businessDtails = new BusinessDetails();
 	
-	@Embedded
-	private BankDetails bandDetails =new BankDetails();
+	@Embedded           
+	private BankDetails bankDetails =new BankDetails();
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address pickupAddress = new Address();

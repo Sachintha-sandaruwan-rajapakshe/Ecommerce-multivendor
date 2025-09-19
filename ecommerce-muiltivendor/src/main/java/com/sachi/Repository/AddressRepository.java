@@ -3,10 +3,9 @@ package com.sachi.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sachi.Model.User;
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+import com.sachi.Model.Address;
 
-	
-	User findByEmail(String email);
+@Repository
+public interface AddressRepository extends JpaRepository<Address, Long> {
+
 }

@@ -17,14 +17,16 @@ import org.springframework.stereotype.Service;
 import com.sachi.Configuration.JwtProvider;
 import com.sachi.Domain.USER_ROLE;
 import com.sachi.Model.Cart;
+import com.sachi.Model.Seller;
 import com.sachi.Model.User;
 import com.sachi.Model.VerificationCode;
 import com.sachi.Repository.CartRepository;
+import com.sachi.Repository.SellerRepository;
 import com.sachi.Repository.UserRepository;
 import com.sachi.Repository.VerificationCodeRepository;
+import com.sachi.Request.LoginRequest;
 import com.sachi.Request.SignupRequest;
 import com.sachi.Response.AuthResponse;
-import com.sachi.Response.LoginRequest;
 import com.sachi.Service.AuthService;
 import com.sachi.Service.EmailService;
 import com.sachi.Utils.OtpUtil;
@@ -48,6 +50,8 @@ public class AuthServiceImpl implements AuthService{
 	private final EmailService emailService;
 	
 	private final CustomServiceImpl customServiceImpl;
+	
+	private final SellerRepository sellerRepository;
 	
 	@Override
 	public String careateUser(SignupRequest req) throws Exception {
@@ -92,16 +96,25 @@ public class AuthServiceImpl implements AuthService{
 	}
 
 	@Override
-	public void sentLoginOtp(String email) throws Exception {
-		String SIGNING_PREFIX ="signin_";
+	public void sentLoginOtp(String email,USER_ROLE role) throws Exception {
+		String SIGNING_PREFIX ="signing_";
 		
 		if(email.startsWith(SIGNING_PREFIX)) {
 			email=email.substring(SIGNING_PREFIX.length());
 			
-			User user =userRepository.findByEmail(email);
-			if(user==null) {
-				throw new Exception("User not exist with provided email..!");
+			if(role.equals(USER_ROLE.ROLE_SELLER)) {
+				Seller seller =sellerRepository.findByEmail(email);
+				if(seller==null) {
+					throw new Exception("Seller not exist with provided email..!");
+				}
+				
+			}else {
+				User user =userRepository.findByEmail(email);
+				if(user==null) {
+					throw new Exception("User not exist with provided email..!");
+				}
 			}
+			
 		}
 		
 		VerificationCode isExist = verificationCodeRepository.findByEmail(email);

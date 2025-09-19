@@ -1,6 +1,6 @@
 package com.sachi.Service;
 
-import org.springframework.security.core.userdetails.User;
+import com.sachi.Model.User;
 
 public interface UserService {
 	public User findUserByJwtToken(String jwt)throws Exception;

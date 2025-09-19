@@ -1,4 +1,4 @@
-package com.sachi.Response;
+package com.sachi.Request;
 
 import lombok.Data;
 
