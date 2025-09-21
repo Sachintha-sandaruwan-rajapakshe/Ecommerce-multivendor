@@ -34,7 +34,7 @@ public class Product {
 	
 	private int sellingPrice;
 	
-	private int discountPercent;
+	private Integer discountPercent;
 	
 	private int quantity;
 	

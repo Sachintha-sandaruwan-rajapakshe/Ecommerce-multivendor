@@ -53,15 +53,15 @@ public class AuthServiceImpl implements AuthService{
 	
 	private final SellerRepository sellerRepository;
 	
+	
 	@Override
 	public String careateUser(SignupRequest req) throws Exception {
 		
-		
-		VerificationCode verificationCode =verificationCodeRepository.findByEmail(req.getEmail());
-		
-		if(verificationCode == null || !verificationCode.getOtp().equals(req.getOtp())) {
-			throw new Exception("Wrong OTP code...!");
-		};
+//		VerificationCode verificationCode =verificationCodeRepository.findByEmail(req.getEmail());
+//		
+//		if(verificationCode == null || !verificationCode.getOtp().equals(req.getOtp())) {
+//			throw new Exception("Wrong OTP code...!");
+//		};
 		
 		User user = userRepository.findByEmail(req.getEmail());
 ;		if(user== null) {
@@ -169,6 +169,12 @@ public class AuthServiceImpl implements AuthService{
 
 	private Authentication authenticate(String username, String otp) {
 		UserDetails userDetails = customServiceImpl.loadUserByUsername(username);
+		
+		String SELLER_PREFIX="seller_";
+		if(username.startsWith(SELLER_PREFIX)) {
+			String acrualName =username.substring(SELLER_PREFIX.length());
+			username=acrualName;
+			}
 		if(userDetails==null ) {
 			throw new BadCredentialsException("invalid username..."+username);
 		}

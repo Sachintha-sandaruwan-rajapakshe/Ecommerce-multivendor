@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sachi.Domain.AccountStatus;
 import com.sachi.Domain.USER_ROLE;
+import com.sachi.Exceptions.SellerException;
 import com.sachi.Model.Seller;
 import com.sachi.Model.SellerReport;
 import com.sachi.Model.VerificationCode;
@@ -43,7 +44,6 @@ public class SellerController {
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> loginSeller(@RequestBody LoginRequest req )throws Exception{
 		String email =req.getEmail();
-		String otp =req.getOtp();
 		
 		req.setEmail("seller_"+email);
 		AuthResponse authResponse =authService.signing(req);
@@ -91,7 +91,7 @@ public class SellerController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Seller>getSellerById(@PathVariable Long id)throws Exception{
+	public ResponseEntity<Seller>getSellerById(@PathVariable Long id)throws SellerException{
 		Seller seller =sellerService.getSellerbyId(id);
 		return new ResponseEntity<>(seller,HttpStatus.OK);
 	}

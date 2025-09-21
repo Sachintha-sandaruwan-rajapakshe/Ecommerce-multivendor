@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sachi.Configuration.JwtProvider;
 import com.sachi.Domain.AccountStatus;
 import com.sachi.Domain.USER_ROLE;
+import com.sachi.Exceptions.SellerException;
 import com.sachi.Model.Address;
 import com.sachi.Model.Seller;
 import com.sachi.Repository.AddressRepository;
@@ -54,8 +55,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public Seller getSellerbyId(Long id) throws Exception {
-		return sellerRepository.findById(id).orElseThrow(()->new Exception("Seller not found with id "+id)) ;
+	public Seller getSellerbyId(Long id) throws SellerException {
+		return sellerRepository.findById(id).orElseThrow(()->new SellerException("Seller not found with id "+id)) ;
 	}
 
 	@Override
