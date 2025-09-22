@@ -134,10 +134,10 @@ public class ProductServiceImpl implements ProductService {
             if (category != null) {
                 Join<Object, Object> categoryJoin = root.join("category");
                 predicates.add(criteriaBuilder.equal(categoryJoin.get("categoryId"), category));
-            }
-            if (brand != null) predicates.add(criteriaBuilder.equal(root.get("brand"), brand));
-            if (color != null) predicates.add(criteriaBuilder.equal(root.get("color"), color));
-            if (size != null) predicates.add(criteriaBuilder.equal(root.get("size"), size));
+            }																					//get("brand") adala colum eke table eke
+            if (brand != null) predicates.add(criteriaBuilder.equal(root.get("brand"), brand));// root= table eke
+            if (color != null) predicates.add(criteriaBuilder.equal(root.get("color"), color));//criteriaBuilder = WHERE,AND,OR
+            if (size != null) predicates.add(criteriaBuilder.equal(root.get("size"), size));   //predicates = filter ekata add karaganna e value eka
             if (minPrice != null) predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("sellingPrice"), minPrice));
             if (maxPrice != null) predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("sellingPrice"), maxPrice));
             if (minDiscount != null) predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("discountPercent"), minDiscount));
