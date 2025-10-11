@@ -1,6 +1,5 @@
 package com.sachi.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -16,7 +15,7 @@ public interface ProductService {
 	public Product deleteProduct(Long productId)throws ProductException;
 	public Product updateProduct(Long productId,Product product)throws ProductException;
 	public Product findProductById(Long productId)throws ProductException;
-	public List<Product> searchProduct()throws ProductException;
+	public List<Product> searchProducts(String query)throws ProductException;
 	public Page<Product> getAllProduct(String category,
 			String brand,
 			String color,
@@ -25,7 +24,7 @@ public interface ProductService {
 			Integer maxPrice,
 			Integer minDiscount,
 			String sort,
-			String stoke,
+			String stock,
 			Integer pageNumber)throws ProductException;
 	
 	public List<Product>getProductBySellerId(Long sellerId)throws ProductException;

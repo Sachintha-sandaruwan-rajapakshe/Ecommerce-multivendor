@@ -25,7 +25,7 @@ public class SellerServiceImpl implements SellerService {
 	private final PasswordEncoder passwordEncoder;
 	private final AddressRepository addressRepository;
 	@Override
-	public Seller getSellerProfile(String jwt) throws Exception {
+	public Seller getSellerProfile(String jwt) throws SellerException {
 		String email=jwtProvider.getEmailFromJwtToken(jwt);
 		
 		return this.getSellerByEmail(email);
@@ -60,10 +60,10 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public Seller getSellerByEmail(String email) throws Exception {
+	public Seller getSellerByEmail(String email) throws SellerException {
 		Seller seller = sellerRepository.findByEmail(email);
 		if(seller==null) {
-			throw new Exception("Seller not found with email..! :- "+email);
+			throw new SellerException("Seller not found with email..! :- "+email);
 		}
 		return seller;
 	}

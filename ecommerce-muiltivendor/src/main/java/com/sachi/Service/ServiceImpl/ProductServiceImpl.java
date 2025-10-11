@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.sachi.Exceptions.ProductException;
@@ -92,9 +93,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product deleteProduct(Long productId) throws ProductException {
         Product product = findProductById(productId);
+        if (product == null) {
+            throw new ProductException("Product not found with id: " + productId);
+        }
         productRepository.delete(product);
         return product;
     }
+
 
     @Override
     public Product updateProduct(Long productId, Product product) throws ProductException {
@@ -170,8 +175,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
 	@Override
-	public List<Product> searchProduct() throws ProductException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> searchProducts(String query) throws ProductException {
+		
+		return productRepository.searchProducts(query);
 	}
 }
