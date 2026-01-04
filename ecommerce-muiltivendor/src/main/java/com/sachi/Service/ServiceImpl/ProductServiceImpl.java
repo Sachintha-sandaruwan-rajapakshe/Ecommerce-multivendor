@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -141,7 +143,7 @@ public class ProductServiceImpl implements ProductService {
                 predicates.add(criteriaBuilder.equal(categoryJoin.get("categoryId"), category));
             }																					//get("brand") adala colum eke table eke
             if (brand != null) predicates.add(criteriaBuilder.equal(root.get("brand"), brand));// root= table eke
-            if (color != null) predicates.add(criteriaBuilder.equal(root.get("color"), color));//criteriaBuilder = WHERE,AND,OR
+            if (color != null) predicates.add(criteriaBuilder.equal(root.get("color"), color));//criteriaBuilder = WHERE...AND,OR
             if (size != null) predicates.add(criteriaBuilder.equal(root.get("size"), size));   //predicates = filter ekata add karaganna e value eka
             if (minPrice != null) predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("sellingPrice"), minPrice));
             if (maxPrice != null) predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("sellingPrice"), maxPrice));
@@ -159,7 +161,7 @@ public class ProductServiceImpl implements ProductService {
         int pageSize = 10;
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sorting);
 
-        Page<Product> products = productRepository.findAll(spec, pageable);
+        Page<Product> products = productRepository.findAll(spec, pageable); //public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> 
 
         if (products.isEmpty()) throw new ProductException("No products found with given criteria");
 

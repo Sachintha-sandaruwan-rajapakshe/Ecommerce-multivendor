@@ -57,7 +57,7 @@ public class AppConfig {
     }
 
     @Bean
-    RestTemplate restTemplate(){
+    RestTemplate restTemplate(){ //when Extanal api connect RestTemplate support
     	
     	return new RestTemplate();
     	

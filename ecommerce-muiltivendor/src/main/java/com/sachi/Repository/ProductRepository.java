@@ -13,13 +13,25 @@ import com.sachi.Model.Seller;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
-    
-    // ✅ Find products by seller
+
+    // Find products by seller
     List<Product> findBySeller(Seller seller);
 
-    // ✅ Search products by title or category name (case-insensitive)
-    @Query("SELECT p FROM Product p " +
-           "WHERE (:query IS NULL OR LOWER(p.title) LIKE LOWER(CONCAT('%', :query, '%')) " +
-           "OR LOWER(p.category.name) LIKE LOWER(CONCAT('%', :query, '%')))")
+    // Search products by title or category name (case-insensitive)
+//    @Query("SELECT p FROM Product p " +
+//           "WHERE (:query IS NULL " +
+//           "OR LOWER(p.title) LIKE LOWER(CONCAT('%', :query, '%')) " +
+//           "OR (p.category IS NOT NULL AND LOWER(p.category.name) LIKE LOWER(CONCAT('%', :query, '%'))))")
+    
+    
+    @Query(value = """
+    	    SELECT * FROM products
+    	    WHERE (:query IS NULL
+    	        OR LOWER(title) LIKE LOWER(CONCAT('%', :query, '%'))
+    	        OR SOUNDEX(title) = SOUNDEX(:query)
+    	        OR LEVENSHTEIN(title, :query) <= 2
+    	        OR (:query IS NOT NULL AND LOWER(category.name) LIKE LOWER(CONCAT('%', :query, '%')))
+    	    )
+    	""", nativeQuery = true)
     List<Product> searchProducts(@Param("query") String query);
 }

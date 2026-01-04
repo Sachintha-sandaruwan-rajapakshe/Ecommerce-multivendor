@@ -37,6 +37,7 @@ public class ProductController {
 		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
 	}
 	
+	@GetMapping()
 	public ResponseEntity<Page<Product>>getAllProducts(@RequestParam(required = false)String category,
 			@RequestParam(required = false)String brand,
 			@RequestParam(required = false)String color,

@@ -34,13 +34,13 @@ public class Product {
 	
 	private int sellingPrice;
 	
-	private Integer discountPercent;
+	private int discountPercent;
 	
 	private int quantity;
 	
 	private String color;
 	
-	@ElementCollection
+	@ElementCollection 
 	private List<String> images = new ArrayList<>();
 	
 	private int numRatings;
