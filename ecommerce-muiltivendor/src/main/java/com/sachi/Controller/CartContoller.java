@@ -3,6 +3,7 @@ package com.sachi.Controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,7 +40,6 @@ public class CartContoller {
 	public ResponseEntity<Cart> findUserCartHandler(@RequestHeader("Authorization") String jwt) throws Exception{
 		User user = userService.findUserByJwtToken(jwt);
 		Cart cart = cartService.findUserCart(user);
-		
 		return new ResponseEntity<Cart>(cart,HttpStatus.OK);
 		
 	}
@@ -55,7 +55,7 @@ public class CartContoller {
 		return new ResponseEntity<CartItem>(cartItem,HttpStatus.OK);
 		
 	}
-	
+	@DeleteMapping("/item/{cartItemId}")
 	public ResponseEntity<CartItem> deleteCartItemHandler(@RequestHeader("Authorization") String jwt,@PathVariable Long cartItemId  ) throws Exception{
 		User user = userService.findUserByJwtToken(jwt);
 		CartItem cartItem =cartItemService.removeCartItem(user.getId(), cartItemId);

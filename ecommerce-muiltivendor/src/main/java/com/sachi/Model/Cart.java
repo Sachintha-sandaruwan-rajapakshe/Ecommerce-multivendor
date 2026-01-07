@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,9 +28,9 @@ public class Cart {
 	@OneToOne
 	private User user;
 	
-	@OneToMany(mappedBy = "cart",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<CartItem> cartItems = new HashSet<>();
-	
+
 	private double totalSellingPrice;
 	
 	private int totalItem;

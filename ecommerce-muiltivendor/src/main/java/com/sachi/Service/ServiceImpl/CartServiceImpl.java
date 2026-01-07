@@ -1,6 +1,5 @@
 package com.sachi.Service.ServiceImpl;
 
-import java.util.Iterator;
 
 import org.springframework.stereotype.Service;
 
@@ -25,8 +24,7 @@ public class CartServiceImpl implements CartService{
 
 	    Cart cart = this.findUserCart(user);
 
-	    CartItem isPresent = cartItemRepository
-	            .findByCartAndProductAndSize(cart, product, size);
+	    CartItem isPresent = cartItemRepository.findByCartAndProductAndSize(cart, product, size);
 
 	    if (isPresent != null) {
 	        // If same product+size already in cart → increase qty
@@ -52,6 +50,9 @@ public class CartServiceImpl implements CartService{
 
 	    cartItem.setMrpPrice(quantity * product.getMrpPrice());
 	    cartItem.setSellingPrice(quantity * product.getSellingPrice());
+	    
+	    cart.getCartItems().add(cartItem);
+	    cartItem.setCart(cart);
 
 	    return cartItemRepository.save(cartItem);
 	}
@@ -64,31 +65,22 @@ public class CartServiceImpl implements CartService{
 	        throw new RuntimeException("Invalid user");
 
 	    Cart cart = cartRepository.findByUserId(user.getId());
-
-	    if (cart == null) {
-	        cart = new Cart();
-	        cart.setUser(user);
-	        cart.setTotalItem(0);
-	        cart.setTotalMrpPrice(0);
-	        cart.setTotalSellingPrice(0);
-	        cart.setDiscount(0);
-	        cart = cartRepository.save(cart);
-	    }
-
-	    int totalMrp = 0, totalSell = 0, totalQty = 0;
+	    
+	    int totalPrice = 0, totalDiscountPrice = 0, totalItem = 0;
 
 	    for (CartItem item : cart.getCartItems()) {
-	        int qty = item.getQuantity();
-	        totalQty += qty;
-	        totalMrp += item.getMrpPrice();
-	        totalSell += item.getSellingPrice();
-	    }
+	        
+	        totalPrice += item.getMrpPrice();;
+	        totalDiscountPrice += item.getSellingPrice();
+	        totalItem += item.getQuantity();
+	    } 
 
-	    cart.setTotalItem(totalQty);
-	    cart.setTotalMrpPrice(totalMrp);
-	    cart.setTotalSellingPrice(totalSell);
-	    cart.setDiscount(calculateDiscountPercentage(totalMrp, totalSell));
-
+	    cart.setTotalItem(totalItem);
+	    cart.setTotalMrpPrice(totalPrice);
+	    cart.setTotalSellingPrice(totalDiscountPrice);
+	    cart.setDiscount(calculateDiscountPercentage(totalPrice, totalDiscountPrice));
+	    cart.setTotalItem(totalItem);
+	   
 	    return cartRepository.save(cart);
 	}
 
