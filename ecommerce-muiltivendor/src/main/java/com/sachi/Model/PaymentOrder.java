@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.sachi.Domain.PaymentMethod;
 import com.sachi.Domain.PaymentOrderStatus;
+import com.sachi.Domain.PaymentStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

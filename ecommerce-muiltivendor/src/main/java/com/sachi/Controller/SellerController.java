@@ -27,6 +27,7 @@ import com.sachi.Request.LoginRequest;
 import com.sachi.Response.AuthResponse;
 import com.sachi.Service.AuthService;
 import com.sachi.Service.EmailService;
+import com.sachi.Service.SellerReportService;
 import com.sachi.Service.SellerService;
 import com.sachi.Utils.OtpUtil;
 
@@ -40,6 +41,7 @@ public class SellerController {
 	private final VerificationCodeRepository verificationCodeRepository;
 	private final AuthService authService;
 	private final EmailService emailService;
+	private final SellerReportService sellerReportService;
 	
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> loginSeller(@RequestBody LoginRequest req )throws Exception{
@@ -102,10 +104,12 @@ public class SellerController {
 		return new ResponseEntity<>(seller,HttpStatus.OK);
 	}
 	
-//	public ResponseEntity<SellerReport>getSellerReport(@PathVariable long id)throws Exception{
-//		
-//		return null;
-//	}
+	@GetMapping("/report")
+	public ResponseEntity<SellerReport>getSellerReport(@RequestHeader("Authorization")String jwt)throws Exception{
+		Seller seller = sellerService.getSellerProfile(jwt);
+		SellerReport  sellerReport = sellerReportService.getSellerReport(seller);
+		return new ResponseEntity<SellerReport>(sellerReport,HttpStatus.OK);
+	}
 	
 	@GetMapping()
 	public ResponseEntity<List<Seller>>getAllSeller(@RequestParam(required = false) AccountStatus status)throws Exception{

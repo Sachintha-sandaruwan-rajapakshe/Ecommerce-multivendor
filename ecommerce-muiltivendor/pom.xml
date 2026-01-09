@@ -111,6 +111,28 @@
 		    <artifactId>spring-dotenv</artifactId>
 		    <version>4.0.0</version>
 		</dependency>
+		
+		<!-- 
+			Stripe payment gateway integrate කරගන්න use කරන official Java SDK.
+			Card payments, wallet payments, subscription payments support කරයි.
+			.env file එකෙන් STRIPE_SECRET_KEY load කරලා Stripe API calls secure විදියට run කරන්න පුළුවන්.
+			-->
+		<dependency>
+		    <groupId>com.stripe</groupId>
+		    <artifactId>stripe-java</artifactId>
+		    <version>31.2.0-alpha.1</version>
+		</dependency>
+		
+		<!-- 
+			Razorpay payment gateway integrate කරගන්න use කරන Java SDK.
+			UPI, Debit/Credit Cards, Net Banking, Wallet payments support කරයි.
+			.env file එකෙන් RAZORPAY_KEY_ID සහ RAZORPAY_KEY_SECRET secure විදියට load කරලා use කරන්න පුළුවන්.
+			-->
+		<dependency>
+		    <groupId>com.razorpay</groupId>
+		    <artifactId>razorpay-java</artifactId>
+		    <version>1.4.3</version>
+		</dependency>
 
 
 
