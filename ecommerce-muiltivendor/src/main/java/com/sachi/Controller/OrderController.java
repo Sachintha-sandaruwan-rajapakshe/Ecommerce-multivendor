@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.razorpay.PaymentLink;
 import com.sachi.Domain.PaymentMethod;
 import com.sachi.Model.Address;
 import com.sachi.Model.Cart;
@@ -23,9 +24,11 @@ import com.sachi.Model.PaymentOrder;
 import com.sachi.Model.Seller;
 import com.sachi.Model.SellerReport;
 import com.sachi.Model.User;
+import com.sachi.Repository.PaymentOrderRepository;
 import com.sachi.Response.PaymentLinkResponse;
 import com.sachi.Service.CartService;
 import com.sachi.Service.OrderService;
+import com.sachi.Service.PaymentService;
 import com.sachi.Service.SellerReportService;
 import com.sachi.Service.SellerService;
 import com.sachi.Service.UserService;
@@ -44,6 +47,8 @@ public class OrderController {
 	private final OrderService orderService;
 	private final SellerService sellerService;
 	private final SellerReportService sellerReportService;
+	private final PaymentService paymentService;
+	private final PaymentOrderRepository paymentOrderRepository;
 	
 	@PostMapping()
 	public ResponseEntity<PaymentLinkResponse> createOrderHandler(
@@ -55,10 +60,25 @@ public class OrderController {
 		
 		Set<Order> orders = orderService.createOrder(user, shippingAddress, cart);
 		
-		//PaymentOrder paymentOrder =PaymentService.
+		PaymentOrder paymentOrder =paymentService.createPaymentOrder(user, orders);
 		
 		PaymentLinkResponse paymentLinkResponse = new PaymentLinkResponse();
 		
+		if (paymentMethod.equals(PaymentMethod.RAZORPAY)) {
+			PaymentLink  payment = paymentService.createrazorPayPaymentLink(user, paymentOrder.getAmout(), paymentOrder.getId());
+			String paymentUrl =payment.get("short_url");
+			String paymentUrlId=payment.get("id");
+			
+			paymentLinkResponse.setPayment_link_url(paymentUrl);
+			paymentOrder.setPaymentlinkId(paymentUrlId);
+			paymentOrderRepository.save(paymentOrder);
+			
+			
+		}else {
+			String paymentUrl = paymentService.createStripePaymentLink(user, paymentOrder.getAmout(), paymentOrder.getId());
+			
+			paymentLinkResponse.setPayment_link_url(paymentUrl);
+		}
 		return new ResponseEntity<PaymentLinkResponse>(paymentLinkResponse,HttpStatus.CREATED);
 		
 	}

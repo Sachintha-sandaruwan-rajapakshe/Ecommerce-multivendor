@@ -6,7 +6,6 @@ import com.razorpay.PaymentLink;
 import com.sachi.Model.Order;
 import com.sachi.Model.PaymentOrder;
 import com.sachi.Model.User;
-import com.sachi.Service.ServiceImpl.PaymentMethod;
 
 public interface PaymentService {
 

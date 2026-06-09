@@ -20,8 +20,8 @@ import com.sachi.Repository.PaymentOrderRepository;
 import com.sachi.Service.PaymentService;
 import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
-import com.stripe.param.billingportal.SessionCreateParams;
-
+import com.stripe.model.checkout.Session;
+import com.stripe.param.checkout.SessionCreateParams;
 import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
@@ -141,7 +141,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 			JSONObject options = new JSONObject();
 			options.put("amount", amount);
-			options.put("currency", "INR");
+			options.put("currency", "lkr");
 			
 			JSONObject customer = new JSONObject();
 			customer.put("name", user.getFullName());
@@ -170,10 +170,57 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 	@Override
 	public String createStripePaymentLink(User user, Long amount, Long orderId) throws Exception {
-		Stripe.apiKey = stripeSecretKey;
-		
-		SessionCreateParams param = SessionCreateParams.builder();
-		return null;
+
+	    Stripe.apiKey = stripeSecretKey;
+
+	    try {
+
+	        // Stripe expects smallest currency unit (cents)
+	        Long stripeAmount = amount * 100;
+
+	        SessionCreateParams.LineItem.PriceData priceData = SessionCreateParams.LineItem.PriceData.builder()
+	                		.setCurrency("lkr")
+	                        .setUnitAmount(stripeAmount)
+	                        .setProductData(
+	                                SessionCreateParams.LineItem.PriceData.ProductData.builder().setName("sandaru product" + orderId).build()
+	                        )
+	                        .build();
+
+	        SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
+	                        .setQuantity(1L)
+	                        .setPriceData(priceData)
+	                        .build();
+
+	        SessionCreateParams params = SessionCreateParams.builder()
+	                        .addLineItem(lineItem)
+
+	                        // payment mode
+	                        .setMode(SessionCreateParams.Mode.PAYMENT)
+
+	                        // success URL (frontend redirect after payment success)
+	                        .setSuccessUrl("http://localhost:3000/payment-success/" + orderId)
+
+	                        // cancel URL
+	                        .setCancelUrl("http://localhost:3000/payment-cancel/" + orderId)
+
+	                        // IMPORTANT: metadata for webhook mapping
+	                        .putMetadata("orderId", String.valueOf(orderId))
+	                        .putMetadata("userId", String.valueOf(user.getId()))
+
+	                        .setCustomerEmail(user.getEmail())
+	                        .build();
+
+	        Session session = Session.create(params);
+
+	        // 👉 this is your payment URL
+	        String paymentUrl = session.getUrl();
+
+	        return paymentUrl;
+
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        throw new Exception(e.getMessage());
+	    }
 	}
 	
 	
