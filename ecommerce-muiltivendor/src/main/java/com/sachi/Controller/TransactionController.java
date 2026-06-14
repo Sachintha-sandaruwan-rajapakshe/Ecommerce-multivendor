@@ -23,7 +23,7 @@ public class TransactionController {
 	private final TransactionService transactionService;
 	private final SellerService sellerService;
 	
-	@GetMapping()
+	@GetMapping("/seller")
 	public ResponseEntity<List<Transaction>> getTransactionBySeller(@RequestHeader("Authorization")String jwt) throws Exception{
 		Seller seller = sellerService.getSellerProfile(jwt);
 		List<Transaction> transactions = transactionService.getTransactionBySellerId(seller);
@@ -31,7 +31,7 @@ public class TransactionController {
 		return ResponseEntity.ok(transactions);
 	}
 	
-	@GetMapping()
+	@GetMapping("/all")
 	public ResponseEntity<List<Transaction>> getAllTransaction() throws Exception{
 		
 		List<Transaction> transactions = transactionService.getAllTransaction();
