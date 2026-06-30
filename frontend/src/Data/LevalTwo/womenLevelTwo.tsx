@@ -1,0 +1,62 @@
+export const womenLevelTwo=[
+    {
+    "name":"Topwere",
+    "categoryId":"women_topwere",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Bottomwere",
+    "categoryId":"women_bottomwere",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Dresses",
+    "categoryId":"women_dresses",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Sarees",
+    "categoryId":"women_sarees",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Kurtis",
+    "categoryId":"women_kurtis",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Jeans",
+    "categoryId":"women_jeans",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Skirts",
+    "categoryId":"women_skirts",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Leggings",
+    "categoryId":"women_leggings",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Nightwear",
+    "categoryId":"women_nightwear",
+    "parentCategoryId":"women",
+    "level":2
+},
+{
+    "name":"Sportswear",
+    "categoryId":"women_sportswear",
+    "parentCategoryId":"women",
+    "level":2
+}
+]

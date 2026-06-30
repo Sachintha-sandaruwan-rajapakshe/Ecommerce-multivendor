@@ -1,7 +1,8 @@
 @import "tailwindcss";
 .logo{
     font-family: "Send Flowers", cursive;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   color: #00927c;
+  
 }

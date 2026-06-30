@@ -8,7 +8,7 @@ const CategoryGrid = () => {
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_4PtUvC5eoqCN2zlQhAdmCzPkEYnGqq3yGtxXq3dXSnNl0D6wEtW68AE&s=10" alt="" />
       </div>
       <div className="col-span-2 row-span-6  h-full">
-        <img className="w-full h=full object-cover object-top rounded-md"
+        <img className="w-full h-full object-cover object-top rounded-md"
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw8TuPSACAO-Arms7jUUvGQcFbtWA_najysLZxQQ44Wg&s" alt="" />
       </div>
       <div className="col-span-4 row-span-6  h-full">

@@ -1,0 +1,62 @@
+export const funitureLevelTwo=[
+    {
+    "name":"Living Room",
+    "categoryId":"home_living_room",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Bedroom",
+    "categoryId":"home_bedroom",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Dining Room",
+    "categoryId":"home_dining_room",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Kitchen Furniture",
+    "categoryId":"home_kitchen_furniture",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Sofas",
+    "categoryId":"home_sofas",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Beds",
+    "categoryId":"home_beds",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Wardrobes",
+    "categoryId":"home_wardrobes",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Chairs",
+    "categoryId":"home_chairs",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Tables",
+    "categoryId":"home_tables",
+    "parentCategoryId":"home_furniture",
+    "level":2
+},
+{
+    "name":"Home Decor",
+    "categoryId":"home_decor",
+    "parentCategoryId":"home_furniture",
+    "level":2
+}
+]

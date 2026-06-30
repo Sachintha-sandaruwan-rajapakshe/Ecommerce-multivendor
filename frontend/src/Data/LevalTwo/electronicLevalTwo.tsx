@@ -1,0 +1,62 @@
+export const electronicsLevelTwo=[
+    {
+    "name":"Mobiles",
+    "categoryId":"electronics_mobiles",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Laptops",
+    "categoryId":"electronics_laptops",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Televisions",
+    "categoryId":"electronics_televisions",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Cameras",
+    "categoryId":"electronics_cameras",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Headphones",
+    "categoryId":"electronics_headphones",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Smart Watches",
+    "categoryId":"electronics_smartwatches",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Gaming Consoles",
+    "categoryId":"electronics_gamingconsoles",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Speakers",
+    "categoryId":"electronics_speakers",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Computer Accessories",
+    "categoryId":"electronics_computer_accessories",
+    "parentCategoryId":"electronics",
+    "level":2
+},
+{
+    "name":"Home Appliances",
+    "categoryId":"electronics_home_appliances",
+    "parentCategoryId":"electronics",
+    "level":2
+}
+]

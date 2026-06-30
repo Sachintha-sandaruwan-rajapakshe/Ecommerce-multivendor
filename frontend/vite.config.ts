@@ -7,4 +7,12 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  optimizeDeps: {
+    include: ['react-slick']
+  },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true
+    }
+  }
 })
