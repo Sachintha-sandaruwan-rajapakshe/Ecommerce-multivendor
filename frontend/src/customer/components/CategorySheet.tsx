@@ -28,7 +28,7 @@ const CategorySheet = ({selectedCategory,setShowSheet}:any) => {
     }
 
   return (
-    <Box className=" shadow-lg lg:h-[500px] overflow-y-auto">
+    <Box className=" shadow-lg lg:h-[300px] overflow-y-auto">
         <div className='flex text-sm flex-wrap gap-1'>
             {
                 categoryTwo[selectedCategory].map((item:any,index)=>
