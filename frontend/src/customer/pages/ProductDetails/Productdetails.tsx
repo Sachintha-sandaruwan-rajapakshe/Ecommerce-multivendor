@@ -1,10 +1,18 @@
-import { AssuredWorkload, CardMembership, LocalShipping, Shield } from '@mui/icons-material';
+import { Add, AddShoppingCart, AssuredWorkload, CardMembership, FavoriteBorder, LocalShipping, Remove, Shield } from '@mui/icons-material';
 import StarIcon from '@mui/icons-material/Star';
-import { Divider } from '@mui/material';
+import { Avatar, Button, Divider } from '@mui/material';
 import { teal } from '@mui/material/colors';
-import React from 'react'
+import React, { useState } from 'react'
+import Review from '../Review/Review';
+import SimilarProduct from './SimilarProduct';
+import RatingCard from '../Review/RatingCard';
 
 const Productdetails = () => {
+  const [quantiry, setQuantity] = React.useState(1);
+
+  const review=[1,1,1];
+  const [seeAll,setSeeAll] = useState(false);
+  const buttonactive = seeAll?review :review.slice(0,1);
 
   const images = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE98PY6i1yZSzzihUP5A_lAHvRJYd7Tf5_Ubk6F5YfQw&s",
@@ -58,6 +66,7 @@ const Productdetails = () => {
             </div>
             <p className="text-sm text-gray-500 mt-2">Inclusive of all taxes</p>
           </div>
+
           <div className="flex flex-col gap-3 mt-7">
             <div className="flex items-center gap-4">
               <Shield sx={{color:teal[500], fontSize: "20px"}}/>
@@ -77,10 +86,43 @@ const Productdetails = () => {
             </div>
 
           </div>
-          
+          <div className="mt-7 space-y-7">
+              <h1 className="uppercase font-semibold">Quantity</h1>
+              <div>
+                <Button disabled={quantiry <= 1} onClick={() => setQuantity(quantiry - 1)}><Remove/></Button>
+                <span className="px-3">{quantiry}</span>
+                <Button onClick={() => setQuantity(quantiry + 1)}><Add/></Button>
+              </div>
+          </div>
 
+          <div className="mt-5 flex items-center gap-4">
+              <Button startIcon={<AddShoppingCart/>} variant="contained" sx={{backgroundColor:teal[500], "&:hover":{backgroundColor:teal[600]}}}>
+                Add To Bag
+              </Button>
+
+              <Button startIcon={<FavoriteBorder/>} variant="outlined" sx={{borderColor:teal[500], color:teal[500]}}>
+                Wishlist
+              </Button>
+          </div>
+
+          <div className="mt-5 font-semibold first-letter:uppercase ">
+              <p>a saree is a timeless, unstitched garment from the Indian subcontinent, consisting of 5 to 9 yards of flowing fabric draped elegantly around the body. It is traditionally paired with a fitted upper bodice (blouse) and a waist-to-floor underskirt (petticoat).</p>
+          </div>
+
+          <div>
+            <RatingCard/>
+          </div>
+          <div>
+            <Review/>
+          </div>
         </section>
-
+      </div>
+      <Divider/>
+      <div className='py-5'>
+        <h1 className='text-lg font-bold text-teal-600'>Similar product</h1>
+        <div>
+           <SimilarProduct/>
+        </div>
       </div>
     </div>
   )
