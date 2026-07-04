@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import CartItem from './CartItem'
 import PricingCard from './PricingCard'
-import { Button } from '@mui/material'
+import { Button, IconButton } from '@mui/material'
+import { Close, LocalOffer } from '@mui/icons-material'
+import { teal } from '@mui/material/colors'
 
 const Cart = () => {
     const [open, setOpen] = useState(false);
@@ -22,7 +24,31 @@ const Cart = () => {
         </div>
 
         {/* RIGHT PRICING */}
-        <div className="lg:sticky lg:top-20 h-fit">
+        <div className="lg:sticky lg:top-20 h-fit ">
+
+          <div className=' w-full space-y-2 rounded-md border border-gray-300 mb-2'>
+                
+                <div className=' p-4'>
+                    <div className='text-gray-400 p-2'>
+                        <LocalOffer sx={{color:teal[200]}}/>
+                        <span className='ml-3'>Apply Coupon</span>
+                    </div>
+                    {!false?<div className='flex '>
+                        <input className='border-gray-300 border rounded-md w-full full mr-3' type="text" />
+                        <Button variant='text'>APPLY</Button>
+                    </div>:
+                        <div className='flex '>
+                            <div className='border-gray-300 border rounded-md w-auto full mr-3'>
+                                <span className='ml-3'>SACHI30 applied</span>
+                                <IconButton>
+                                    <Close/>
+                                </IconButton>
+                            </div>
+                        </div>
+                    }
+                    
+                </div>
+            </div>
             <PricingCard />
         </div>
 

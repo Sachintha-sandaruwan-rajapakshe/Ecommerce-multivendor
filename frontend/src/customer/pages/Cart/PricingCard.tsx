@@ -1,5 +1,5 @@
-import { Favorite, LocalOffer } from '@mui/icons-material'
-import { Button, Divider } from '@mui/material'
+import { Close, Favorite, LocalOffer, Remove } from '@mui/icons-material'
+import { Button, Divider, IconButton } from '@mui/material'
 import { teal } from '@mui/material/colors'
 import React from 'react'
 
@@ -8,18 +8,7 @@ const PricingCard = () => {
     <div>
         <div className='border border-gray-300 p-2'>
         <div className='grid gap-3'>
-            <div className=' w-full space-y-2 rounded-md '>
-                <div className=' p-4'>
-                    <div className='text-gray-400 p-2'>
-                        <LocalOffer sx={{color:teal[200]}}/>
-                        <span className='ml-3'>Apply Coupon</span>
-                    </div>
-                    <div className='flex '>
-                        <input className='border-gray-300 border rounded-md w-full full mr-3' type="text" />
-                        <Button variant='text'>APPLY</Button>
-                    </div>
-                </div>
-            </div>
+            
 
             <div className=' w-full space-y-2 rounded-md py-5 '>
                 <div className='mx-4' >
