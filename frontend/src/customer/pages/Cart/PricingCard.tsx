@@ -2,8 +2,10 @@ import { Close, Favorite, LocalOffer, Remove } from '@mui/icons-material'
 import { Button, Divider, IconButton } from '@mui/material'
 import { teal } from '@mui/material/colors'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const PricingCard = () => {
+    const navigate = useNavigate();
   return (
     <div>
         <div className='border border-gray-300 p-2'>
@@ -50,7 +52,8 @@ const PricingCard = () => {
                 </div>
 
                 <div className="px-5">
-                    <Button
+                    <Button 
+                        onClick={()=>navigate("/checkout")}
                         className="w-full"
                         variant="contained"
                     >

@@ -6,8 +6,11 @@ import React, { useState } from 'react'
 import { FavoriteBorder, ShoppingCart, Storefront } from '@mui/icons-material';
 import CategorySheet from './CategorySheet';
 import { Maincategory } from '../../Data/MainCategory';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+
     const theme = useTheme();
     const isLarge= useMediaQuery(theme.breakpoints.up('lg'));
 
@@ -30,7 +33,7 @@ const Navbar = () => {
         )}
 
         {/* LOGO */}
-        <h1 className="logo cursor-pointer text-lg md:text-2xl lg:text-3xl text-[#00927c]">
+        <h1 onClick={()=>navigate("/")} className="logo cursor-pointer text-lg md:text-2xl lg:text-3xl text-[#00927c]">
           Sachi Bazzar
         </h1>
 
@@ -64,7 +67,7 @@ const Navbar = () => {
 
         {/* USER */}
         {true ? (
-          <Button className="flex items-center gap-2">
+          <Button onClick={()=>navigate("/account/orders")} className="flex items-center gap-2">
             <Avatar
               sx={{ width: 28, height: 28 }}
               src="https://t4.ftcdn.net/jpg/03/76/47/81/360_F_376478182_yPuPo2qi6wGWR6gQ7QBBC8Isw.jpg"
@@ -84,13 +87,13 @@ const Navbar = () => {
           <FavoriteBorder sx={{ fontSize: 26 }} />
         </IconButton>
 
-        <IconButton>
+        <IconButton onClick={()=>navigate("/cart")}>
           <ShoppingCart sx={{ fontSize: 26 }} />
         </IconButton>
 
         {/* SELLER BUTTON (ONLY LARGE) */}
         {isLarge && (
-          <Button startIcon={<Storefront />} variant="outlined">
+          <Button onClick={()=>navigate("/become-seller")} startIcon={<Storefront />} variant="outlined">
             Become a Seller
           </Button>
         )}

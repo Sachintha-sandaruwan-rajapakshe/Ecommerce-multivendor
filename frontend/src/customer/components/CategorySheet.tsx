@@ -8,6 +8,7 @@ import { womenLevelThree } from '../../Data/LevalThree/womenLevelThree'
 import { furnitureLevelThree } from '../../Data/LevalThree/funitureLevelThree'
 import { electronicsLevelThree } from '../../Data/LevalThree/electronicsLevelThree'
 import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const categoryTwo:{[key:string]:any[]}={
     men:menLevalTwo,
@@ -23,6 +24,7 @@ const categoryThree:{[key:string]:any[]}={
 }
 
 const CategorySheet = ({selectedCategory,setShowSheet}:any) => {
+    const navigate = useNavigate();
     const childCategory =(category:any,parentCategoryId:any)=>{
         return category.filter((child:any)=>child.parentCategoryId==parentCategoryId)
     }
@@ -36,7 +38,7 @@ const CategorySheet = ({selectedCategory,setShowSheet}:any) => {
                     <p className="text-emerald-700 mb-5 font-semibold mx-5">{item.name}</p>
                 
                     <ul className='space-y-3'>
-                        {childCategory(categoryThree[selectedCategory],item.categoryId).map((item:any)=><div><li className='cursor-pointer hover:text-emerald-700 hover:underline hover:scale-110 mx-5'>{item.name}</li></div>)}
+                        {childCategory(categoryThree[selectedCategory],item.categoryId).map((item:any)=><div><li onClick={()=>navigate("/products/"+item.categoryId)} className='cursor-pointer hover:text-emerald-700 hover:underline hover:scale-110 mx-5'>{item.name}</li></div>)}
                         
                     </ul>
                 </div>)
